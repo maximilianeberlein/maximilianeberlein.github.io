@@ -212,10 +212,10 @@ a { color: inherit; }
   html { scroll-snap-type: none; }
   .screen { height: auto; min-height: 100vh; min-height: 100svh; overflow: visible; scroll-snap-align: none; scroll-snap-stop: normal; }
   .home-screen { min-height: 100vh; min-height: 100svh; }
-  .profile { top: 16px; right: 16px; gap: 10px; }
+  .profile { top: 16px; right: 16px; gap: 7px; }
   .profile-name { font-size: 19px; }
   .profile-photo-trigger { width: 52px; height: 52px; flex-basis: 52px; }
-  .social-marks { gap: 4px; }
+  .social-marks { gap: 2px; }
   .social-mark { width: 36px; height: 36px; }
   .social-mark svg { width: 16px; height: 16px; }
   .home-screen { padding-top: 126px; }
@@ -226,8 +226,8 @@ a { color: inherit; }
   .content-screen { padding: 104px 32px 88px; }
   .education-grid { grid-template-columns: 1fr; }
   .education-grid > h2 { grid-column: auto; }
-  .entry { grid-template-columns: 88px minmax(0, 1fr); grid-template-areas: "logo date" "logo details"; gap: 0 14px; align-items: start; }
-  .entry > .date { grid-area: date; margin: 0; }
+  .entry { grid-template-columns: 88px minmax(0, 1fr); grid-template-areas: "logo details" "logo date"; gap: 3px 14px; align-items: start; }
+  .entry > .date { grid-area: date; margin: 3px 0 0; }
   .entry > .education-content { display: contents; }
   .entry .education-logo-link { grid-area: logo; align-self: start; margin-top: 4px; }
   .entry .education-content > div { grid-area: details; min-width: 0; }

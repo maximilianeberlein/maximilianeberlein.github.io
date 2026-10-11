@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Young+Serif&display=swap" rel="stylesheet">
   <title>Maximilian Eberlein</title>
-  <link rel="stylesheet" href="styles.css?v=2026-10-11-adaptive-video">
+  <link rel="stylesheet" href="styles.css?v=2026-10-11-hobby-mobile">
 </head>
 <body>
   <header class="profile">
@@ -258,7 +258,7 @@
             <div class="hobby-roll-carousel">
               <button class="hobby-roll-arrow hobby-roll-previous" type="button" aria-label="Previous hobby">‹</button>
               <div class="hobby-roll-stage">
-                <img class="hobby-roll-image" alt="">
+                <img class="hobby-roll-image" alt="" loading="lazy" decoding="async">
                 <video class="hobby-roll-video" loop playsinline muted hidden></video>
               </div>
               <button class="hobby-roll-arrow hobby-roll-next" type="button" aria-label="Next hobby">›</button>
@@ -484,22 +484,22 @@
         { src: "portrait.jpg", alt: "Maximilian Eberlein" }
       ],
       calisthenics: [
-        { src: "photos/calisthenics-handstand-new.jpg", alt: "Practicing a handstand among the trees in Central Park." }
+        { src: "photos/hobbies/calisthenics.webp", alt: "Practicing a handstand among the trees in Central Park." }
       ],
       wintersport: [
-        { src: "photos/wintersport-09.jpg", alt: "Snowboarding down a snowy slope." }
+        { src: "photos/hobbies/wintersport.webp", alt: "Snowboarding down a snowy slope." }
       ],
       watersport: [
-        { src: "photos/watersport-10.jpg", alt: "Kitesurfer jumping over the sea." }
+        { src: "photos/hobbies/watersport.webp", alt: "Kitesurfer jumping over the sea." }
       ],
       dumbChallenges: [
-        { src: "photos/challenge-cycling.jpg", alt: "Cycling along a quiet road at sunset." }
+        { src: "photos/hobbies/challenges.webp", alt: "Cycling along a quiet road at sunset." }
       ],
       filmmaking: [
         { type: "video", src: "photos/filmmaking-01.mp4", hls: "project-media/adaptive/filmmaking/master.m3u8", adaptivePoster: "project-media/adaptive/filmmaking/poster.jpg", poster: "photos/filmmaking-01-poster.jpg", alt: "Drone video footage." }
       ],
       writing: [
-        { src: "photos/writing-02.jpg", alt: "A painting inspired by The Starry Night, with a grand piano beneath a swirling sky." }
+        { src: "photos/hobbies/writing.webp", alt: "A painting inspired by The Starry Night, with a grand piano beneath a swirling sky." }
       ]
     };
     const hobbyTabs = [...document.querySelectorAll(".hobby-tab")];
