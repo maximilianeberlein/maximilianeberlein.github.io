@@ -236,8 +236,7 @@ a { color: inherit; }
   .hobby-roll-arrow { width: 44px; height: 48px; }
   .photo-gallery { padding: 36px 8px 12px; }
   .gallery-stage { gap: 5px; }
-  .gallery-main-image { width: calc(100% - 72px); height: 60svh; }
-  .gallery-main-image { width: calc(100% - 98px); }
+  .gallery-main-image { width: calc(100% - 98px); height: 60svh; }
   .gallery-arrow { flex-basis: 44px; width: 44px; height: 48px; }
   .gallery-close { width: 44px; height: 44px; }
   .photo-trigger { width: 44px; height: 44px; margin-left: 4px; padding: 7px; vertical-align: -13px; }
