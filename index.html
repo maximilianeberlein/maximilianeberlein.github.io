@@ -616,14 +616,20 @@
       if (event.key === "ArrowLeft") showGalleryPhoto(galleryIndex - 1);
       if (event.key === "ArrowRight") showGalleryPhoto(galleryIndex + 1);
     });
-    if (!window.location.hash) {
-      window.setTimeout(() => {
+    let introScrollTimer;
+    if (!window.location.hash && !window.matchMedia("(max-width: 800px), (hover: none)").matches) {
+      introScrollTimer = window.setTimeout(() => {
         document.getElementById("education").scrollIntoView({
           behavior: "smooth",
           block: "start"
         });
       }, 1500);
     }
+    function cancelIntroScroll() {
+      window.clearTimeout(introScrollTimer);
+    }
+    document.addEventListener("pointerdown", cancelIntroScroll, { once: true });
+    document.addEventListener("keydown", cancelIntroScroll, { once: true });
   </script>
 </body>
 </html>
