@@ -226,7 +226,12 @@ a { color: inherit; }
   .content-screen { padding: 104px 32px 88px; }
   .education-grid { grid-template-columns: 1fr; }
   .education-grid > h2 { grid-column: auto; }
-  .entry, .plain-list li { grid-template-columns: 1fr; gap: 1px; }
+  .entry { grid-template-columns: 88px minmax(0, 1fr); grid-template-areas: "logo date" "logo details"; gap: 0 14px; align-items: start; }
+  .entry > .date { grid-area: date; margin: 0; }
+  .entry > .education-content { display: contents; }
+  .entry .education-logo-link { grid-area: logo; align-self: start; margin-top: 4px; }
+  .entry .education-content > div { grid-area: details; min-width: 0; }
+  .plain-list li { grid-template-columns: 1fr; gap: 1px; }
   .project-press-logos { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .project-company-logos { grid-template-columns: repeat(3, minmax(0, 1fr)); }
   .project-media-videos { grid-template-columns: 1fr; }
