@@ -186,13 +186,13 @@
             </figure>
             <p>MetaSuit aimed to create a soft, lightweight, natural-feeling full-body suit for mixed reality, motion capture, and medical applications. It combined real-time movement tracking with haptic feedback from soft HASEL artificial muscles, letting users move and interact in VR without external cameras or expensive sensors. We also explored post-surgical rehabilitation using movement data collected by the suit, and haptic cues to help people with Parkinson’s reactivate their muscles.</p>
             <div class="project-media-videos" aria-label="MetaSuit innovation videos">
-              <figure><video controls loop playsinline muted aria-label="MetaSuit haptic feedback innovation" data-hls="project-media/adaptive/metasuit-haptic-feedback/master.m3u8" data-fallback="https://www.metasuit.ethz.ch/assets/videos/inn1.mov" poster="project-media/adaptive/metasuit-haptic-feedback/poster.jpg" preload="none"></video><figcaption>Haptic feedback</figcaption></figure>
-              <figure><video controls loop playsinline muted aria-label="MetaSuit realtime movement tracking innovation" data-hls="project-media/adaptive/metasuit-real-time-motion-tracking/master.m3u8" data-fallback="https://www.metasuit.ethz.ch/assets/videos/inn2.mov" poster="project-media/adaptive/metasuit-real-time-motion-tracking/poster.jpg" preload="none"></video><figcaption>Realtime motion tracking</figcaption></figure>
+              <figure><video controls loop playsinline muted aria-label="MetaSuit haptic feedback innovation" data-hls="project-media/adaptive/metasuit-haptic-feedback/master.m3u8" data-fallback="project-media/adaptive/metasuit-haptic-feedback/fallback.mp4" poster="project-media/adaptive/metasuit-haptic-feedback/poster.jpg" preload="none"></video><figcaption>Haptic feedback</figcaption></figure>
+              <figure><video controls loop playsinline muted aria-label="MetaSuit realtime movement tracking innovation" data-hls="project-media/adaptive/metasuit-real-time-motion-tracking/master.m3u8" data-fallback="project-media/adaptive/metasuit-real-time-motion-tracking/fallback.mp4" poster="project-media/adaptive/metasuit-real-time-motion-tracking/poster.jpg" preload="none"></video><figcaption>Realtime motion tracking</figcaption></figure>
             </div>
             <p>HASEL actuators were, and still are, a very novel technology, but they are not yet mature enough for industry. Amid all the metaverse hype in 2023, we were contacted by many interested parties. However, as a team, we decided to finish our degrees and publish a <a href="#high-frequency-capacitive-sensing">paper</a> about our novel HASEL actuator instead.</p>
             <div class="project-media-videos" aria-label="MetaSuit technology videos">
-              <figure><video controls loop playsinline muted aria-label="HASEL technology" data-hls="project-media/adaptive/metasuit-hasel-technology/master.m3u8" data-fallback="https://www.metasuit.ethz.ch/assets/videos/technology.mov" poster="project-media/adaptive/metasuit-hasel-technology/poster.jpg" preload="none"></video><figcaption>HASEL technology</figcaption></figure>
-              <figure><video controls loop playsinline muted aria-label="HASEL actuator stack" data-hls="project-media/adaptive/metasuit-hasel-actuator-stack/master.m3u8" data-fallback="https://www.metasuit.ethz.ch/assets/videos/inn3.mov" poster="project-media/adaptive/metasuit-hasel-actuator-stack/poster.jpg" preload="none"></video><figcaption>HASEL actuator stack</figcaption></figure>
+              <figure><video controls loop playsinline muted aria-label="HASEL technology" data-hls="project-media/adaptive/metasuit-hasel-technology/master.m3u8" data-fallback="project-media/adaptive/metasuit-hasel-technology/fallback.mp4" poster="project-media/adaptive/metasuit-hasel-technology/poster.jpg" preload="none"></video><figcaption>HASEL technology</figcaption></figure>
+              <figure><video controls loop playsinline muted aria-label="HASEL actuator stack" data-hls="project-media/adaptive/metasuit-hasel-actuator-stack/master.m3u8" data-fallback="project-media/adaptive/metasuit-hasel-actuator-stack/fallback.mp4" poster="project-media/adaptive/metasuit-hasel-actuator-stack/poster.jpg" preload="none"></video><figcaption>HASEL actuator stack</figcaption></figure>
             </div>
             <div class="project-press-mentions">
               <h4>Want to learn more:</h4>
@@ -402,7 +402,10 @@
         toggle.setAttribute("aria-label", `${expanded ? "Hide" : "Show"} ${projectName} project content`);
         content.hidden = !expanded;
         if (expanded && projectName === "Orcahand") {
-          projectVideos.forEach((video, index) => { video.muted = index !== 0; });
+          projectVideos.forEach((video, index) => {
+            video.defaultMuted = index !== 0;
+            video.muted = video.defaultMuted;
+          });
         }
         projectVideos.forEach(video => {
           const leadVideo = projectVideos[0];
