@@ -168,7 +168,7 @@ a { color: inherit; }
 .plain-list a.award-icon-link { display: grid; width: 44px; height: 44px; flex: 0 0 44px; place-items: center; border-radius: 50%; text-decoration: none; transition: background .18s ease, transform .18s ease; }
 .award-icon-link img { display: block; width: 44px; height: 44px; object-fit: contain; }
 .plain-list a.award-icon-link:hover, .plain-list a.award-icon-link:focus-visible { background: #202020; transform: scale(1.08); outline: none; }
-.photo-trigger { display: inline-grid; width: 30px; height: 30px; margin-left: 7px; padding: 3px; vertical-align: -8px; place-items: center; border: 0; border-radius: 5px; background: transparent; color: #d8b24c; cursor: pointer; transition: color .18s ease, background .18s ease; }
+.photo-trigger { display: inline-grid; width: 30px; height: 30px; margin-left: 4px; padding: 3px; vertical-align: -8px; place-items: center; border: 0; border-radius: 5px; background: transparent; color: #d8b24c; cursor: pointer; transition: color .18s ease, background .18s ease; }
 .photo-trigger:hover, .photo-trigger:focus-visible { background: #262626; color: #f1d37b; outline: none; }
 .photo-trigger svg { display: block; width: 23px; height: 23px; flex: 0 0 23px; fill: currentColor; }
 .hobby-grid { display: grid; max-width: 900px; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 10px; }
@@ -259,7 +259,7 @@ a { color: inherit; }
   .gallery-main-image { width: calc(100% - 98px); height: 60svh; }
   .gallery-arrow { flex-basis: 44px; width: 44px; height: 48px; }
   .gallery-close { width: 44px; height: 44px; }
-  .photo-trigger { position: relative; display: inline-block; width: 44px; height: 0; margin-left: 2px; padding: 0; overflow: visible; font: inherit; line-height: 0; vertical-align: baseline; }
+  .photo-trigger { position: relative; display: inline-block; width: 44px; height: 0; margin-left: 1px; padding: 0; overflow: visible; font: inherit; line-height: 0; vertical-align: baseline; }
   .photo-trigger::before { content: ""; position: absolute; top: -24px; left: 0; width: 44px; height: 44px; }
   .photo-trigger svg { position: absolute; top: -.85em; left: 50%; display: block; width: 1em; height: 1em; transform: translateX(-50%); }
   .award-foundation-link { height: 44px; }
@@ -283,6 +283,7 @@ a { color: inherit; }
 }
 @media (hover: none) and (max-width: 800px) {
   .side-nav a:hover { background: transparent; transform: none; }
+  .side-nav a:active { background: #303030; transform: scale(1.08); }
   .side-nav a::after { display: none; }
 }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
