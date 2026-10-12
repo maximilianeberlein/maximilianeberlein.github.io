@@ -17,9 +17,9 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Young+Serif&display=swap" rel="stylesheet">
   <title>Maximilian Eberlein's Personal Website</title>
-  <link rel="stylesheet" href="styles.css?v=2026-10-11-scroll-active-nav">
+  <link rel="stylesheet" href="styles.css?v=2026-10-11-home-nav-animation">
 </head>
-<body>
+<body class="home-active">
   <header class="profile">
     <div class="identity">
       <span class="profile-name">Maximilian Eberlein</span>
@@ -296,7 +296,6 @@
   </dialog>
   <script>
     const homeScreen = document.getElementById("home");
-    document.body.classList.add("home-active");
     if (window.matchMedia("(hover: none) and (max-width: 800px)").matches) {
       document.querySelectorAll(".side-nav a").forEach(link => {
         link.addEventListener("click", event => {
