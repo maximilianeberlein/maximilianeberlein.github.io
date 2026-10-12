@@ -213,8 +213,9 @@ a { color: inherit; }
   .screen { height: auto; min-height: 100vh; min-height: 100svh; overflow: visible; scroll-snap-align: none; scroll-snap-stop: normal; }
   .home-screen { min-height: 100vh; min-height: 100svh; }
   .profile { top: 16px; right: 16px; gap: 7px; }
+  .identity { gap: 2px; }
   .profile-name { font-size: 19px; }
-  .profile-photo-trigger { width: 52px; height: 52px; flex-basis: 52px; }
+  .profile-photo-trigger { width: 60px; height: 60px; flex-basis: 60px; }
   .social-marks { gap: 2px; }
   .social-mark { width: 36px; height: 36px; }
   .social-mark svg { width: 16px; height: 16px; }
@@ -258,8 +259,9 @@ a { color: inherit; }
   .gallery-main-image { width: calc(100% - 98px); height: 60svh; }
   .gallery-arrow { flex-basis: 44px; width: 44px; height: 48px; }
   .gallery-close { width: 44px; height: 44px; }
-  .photo-trigger { width: 44px; height: 44px; margin-left: 4px; padding: 7px; vertical-align: -6px; }
-  .photo-trigger svg { width: 26px; height: 26px; flex-basis: 26px; }
+  .photo-trigger { position: relative; display: inline-block; width: 44px; height: 0; margin-left: 4px; padding: 0; overflow: visible; font: inherit; line-height: 0; vertical-align: baseline; }
+  .photo-trigger::before { content: ""; position: absolute; top: -24px; left: 0; width: 44px; height: 44px; }
+  .photo-trigger svg { position: absolute; top: -.85em; left: 50%; display: block; width: 1em; height: 1em; transform: translateX(-50%); }
   .award-foundation-link { height: 44px; }
   .project-feature-mark { width: 44px; height: 44px; flex-basis: 44px; }
   .project-feature-mark img { height: 44px; }
@@ -269,7 +271,8 @@ a { color: inherit; }
 }
 @media (max-width: 520px) {
   .profile-name { font-size: 16px; }
-  .profile-photo-trigger { width: 46px; height: 46px; flex-basis: 46px; }
+  .social-mark { width: 32px; height: 32px; }
+  .profile-photo-trigger { width: 52px; height: 52px; flex-basis: 52px; }
   .page-content > h2 { font-size: 30px; margin-bottom: 22px; }
   .entry { padding: 7px 0; }
   .plain-list li { padding: 5px 0; }
