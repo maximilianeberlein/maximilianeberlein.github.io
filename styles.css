@@ -259,7 +259,7 @@ a { color: inherit; }
   .gallery-main-image { width: calc(100% - 98px); height: 60svh; }
   .gallery-arrow { flex-basis: 44px; width: 44px; height: 48px; }
   .gallery-close { width: 44px; height: 44px; }
-  .photo-trigger { position: relative; display: inline-block; width: 44px; height: 0; margin-left: 4px; padding: 0; overflow: visible; font: inherit; line-height: 0; vertical-align: baseline; }
+  .photo-trigger { position: relative; display: inline-block; width: 44px; height: 0; margin-left: 2px; padding: 0; overflow: visible; font: inherit; line-height: 0; vertical-align: baseline; }
   .photo-trigger::before { content: ""; position: absolute; top: -24px; left: 0; width: 44px; height: 44px; }
   .photo-trigger svg { position: absolute; top: -.85em; left: 50%; display: block; width: 1em; height: 1em; transform: translateX(-50%); }
   .award-foundation-link { height: 44px; }
