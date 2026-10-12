@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Young+Serif&display=swap" rel="stylesheet">
   <title>Maximilian Eberlein</title>
-  <link rel="stylesheet" href="styles.css?v=2026-10-11-mobile-camera-gap">
+  <link rel="stylesheet" href="styles.css?v=2026-10-11-mobile-nav-touch">
 </head>
 <body>
   <header class="profile">
@@ -224,7 +224,7 @@
       <div class="page-content">
         <h2>Research</h2>
         <ul class="plain-list research-list">
-          <li><span class="date">2026</span><span class="paper-entry"><button class="paper-logo-trigger" type="button" aria-label="arXiv preprint · arXiv:2606.14561" aria-expanded="false" data-tooltip="arXiv preprint · arXiv:2606.14561"><img class="paper-logo" src="logos/arxiv-preprint.svg" alt="arXiv preprint"></button><span><a href="https://arxiv.org/abs/2606.14561" target="_blank" rel="noopener noreferrer">ORCA: A Platform for Open-Source Dexterity Research</a></span></span></li>
+          <li><span class="date">Jun 2026</span><span class="paper-entry"><button class="paper-logo-trigger" type="button" aria-label="arXiv preprint · arXiv:2606.14561" aria-expanded="false" data-tooltip="arXiv preprint · arXiv:2606.14561"><img class="paper-logo" src="logos/arxiv-preprint.svg" alt="arXiv preprint"></button><span><a href="https://arxiv.org/abs/2606.14561" target="_blank" rel="noopener noreferrer">ORCA: A Platform for Open-Source Dexterity Research</a></span></span></li>
           <li><span class="date">May 2025</span><span class="paper-entry"><button class="paper-logo-trigger" type="button" aria-label="IEEE International Conference on Robotics and Automation (ICRA)" aria-expanded="false" data-tooltip="IEEE International Conference on Robotics and Automation (ICRA)"><img class="paper-logo paper-logo-icra25" src="logos/icra-2025.png" alt="ICRA 2025 logo"></button><span>Speaker at <a href="https://2025.ieee-icra.org/event/supporting-reproducibility-in-soft-robotics-a-community-discussion/" target="_blank" rel="noopener noreferrer">ICRA Workshop on Reproducibility in Soft Robotics</a> <button class="photo-trigger" type="button" data-gallery="icra2025" aria-label="Open ICRA 2025 photo gallery" aria-haspopup="dialog" aria-controls="event-photo-gallery"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8.5 5 10 3h4l1.5 2H19a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h3.5ZM12 8a5 5 0 1 0 0 10 5 5 0 0 0 0-10Zm0 2a3 3 0 1 1 0 6 3 3 0 0 1 0-6Z"/></svg></button><span class="award-detail">Shared presentation with <a href="https://srl.ethz.ch/the-group/prof-robert-katzschmann.html" target="_blank" rel="noopener noreferrer">Prof. Dr. Robert Katzschmann</a></span></span></span></li>
           <li><span class="date">Oct 2025</span><span class="paper-entry"><button class="paper-logo-trigger" type="button" aria-label="IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS)" aria-expanded="false" data-tooltip="IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS)"><img class="paper-logo" src="logos/iros-2025.png" alt="IROS 2025 logo"></button><span><a href="https://arxiv.org/abs/2504.04259" target="_blank" rel="noopener noreferrer">ORCA: An Open-Source, Reliable, Cost-Effective, Anthropomorphic Robotic Hand for Uninterrupted Dexterous Task Learning</a></span></span></li>
           <li id="high-frequency-capacitive-sensing"><span class="date">Oct 2024</span><span class="paper-entry"><button class="paper-logo-trigger" type="button" aria-label="IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS)" aria-expanded="false" data-tooltip="IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS)"><img class="paper-logo paper-logo-iros24" src="logos/iros-2024.png" alt="IROS 2024 Abu Dhabi logo"></button><span><a href="https://arxiv.org/abs/2404.04071" target="_blank" rel="noopener noreferrer">High-Frequency Capacitive Sensing for Electrohydraulic Soft Actuators</a></span></span></li>
@@ -290,6 +290,13 @@
   <script>
     const homeScreen = document.getElementById("home");
     document.body.classList.add("home-active");
+    if (window.matchMedia("(hover: none) and (max-width: 800px)").matches) {
+      document.querySelectorAll(".side-nav a").forEach(link => {
+        link.addEventListener("click", event => {
+          if (event.detail > 0) link.blur();
+        });
+      });
+    }
     const adaptivePlayers = new WeakMap();
     let hlsLibraryPromise;
     function loadHlsLibrary() {

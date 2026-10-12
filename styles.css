@@ -282,6 +282,7 @@ a { color: inherit; }
   .hobby-roll { margin-top: 18px; padding-top: 14px; }
 }
 @media (hover: none) and (max-width: 800px) {
+  .side-nav a:hover { background: transparent; transform: none; }
   .side-nav a::after { display: none; }
 }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
