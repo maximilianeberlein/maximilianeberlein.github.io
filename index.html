@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Young+Serif&display=swap" rel="stylesheet">
   <title>Maximilian Eberlein</title>
-  <link rel="stylesheet" href="styles.css?v=2026-10-11-camera-spacing">
+  <link rel="stylesheet" href="styles.css?v=2026-10-11-scroll-active-nav">
 </head>
 <body>
   <header class="profile">
@@ -420,6 +420,40 @@
       document.body.classList.toggle("home-active", entry.isIntersecting);
     }, { threshold: 0.4 });
     homeObserver.observe(homeScreen);
+    const sectionNavLinks = [...document.querySelectorAll(".side-nav a")];
+    const sectionNavTargets = sectionNavLinks.map(link => ({ link, section: document.getElementById(link.hash.slice(1)) })).filter(item => item.section);
+    function updateSectionNav() {
+      const center = window.innerHeight / 2;
+      let centeredSection = null;
+      let mostVisibleSection = null;
+      let maxVisibleHeight = -1;
+      sectionNavTargets.forEach(({ link, section }) => {
+        const rect = section.getBoundingClientRect();
+        const visibleHeight = Math.max(0, Math.min(rect.bottom, window.innerHeight) - Math.max(rect.top, 0));
+        if (rect.top <= center && rect.bottom > center) centeredSection = link;
+        if (visibleHeight > maxVisibleHeight) {
+          maxVisibleHeight = visibleHeight;
+          mostVisibleSection = link;
+        }
+      });
+      const current = centeredSection || mostVisibleSection;
+      sectionNavTargets.forEach(({ link }) => {
+        if (link === current) link.setAttribute("aria-current", "location");
+        else link.removeAttribute("aria-current");
+      });
+    }
+    let sectionNavUpdatePending = false;
+    function scheduleSectionNavUpdate() {
+      if (sectionNavUpdatePending) return;
+      sectionNavUpdatePending = true;
+      requestAnimationFrame(() => {
+        sectionNavUpdatePending = false;
+        updateSectionNav();
+      });
+    }
+    window.addEventListener("scroll", scheduleSectionNavUpdate, { passive: true });
+    window.addEventListener("resize", scheduleSectionNavUpdate);
+    updateSectionNav();
     const emailToggle = document.querySelector(".email-toggle");
     const emailReveal = document.getElementById("email-reveal");
     const emailText = emailReveal.querySelector(".email-text");
