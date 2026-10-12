@@ -243,6 +243,7 @@ a { color: inherit; }
   .project-media-images { grid-template-columns: 1fr; }
   .project-gallery-video { width: calc(100% - 72px); height: 60svh; }
   .hobby-roll-stage { width: min(calc(100% - 84px), 480px, 53.333svh); }
+  .hobby-roll-image { object-fit: contain; }
   .hobby-roll-arrow { width: 44px; height: 48px; }
   .photo-gallery { padding: 36px 8px 12px; }
   .gallery-stage { gap: 5px; }
