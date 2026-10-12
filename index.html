@@ -210,7 +210,7 @@
               </figure>
               <p>Among dozens of other student projects, we made it to the final selection of teams invited to present to a jury. Former ETH Rector Prof. Dr. Sarah Springman selected us as the winner project. We used a CoreXY mechanism for the hardware (used in most 3D printers today). I also built the entire app from scratch (in the pre-vibecode era) to control the robot. The app let users draw parameterized shapes, steer the pencil using voice commands alone, and sign documents automatically.</p>
               <div class="project-media-videos" aria-label="Signbot project videos">
-                <figure><video controls loop playsinline class="audio-coordinated-video" aria-label="Signbot promotion video for finals qualification" data-hls="project-media/adaptive/signbot-finals-qualification/master.m3u8" data-fallback="project-media/signbot-finals-qualification.mp4" poster="project-media/adaptive/signbot-finals-qualification/poster.jpg" preload="none"></video><figcaption>Signbot promotion video for finals qualification</figcaption></figure>
+                <figure><video controls loop playsinline class="audio-coordinated-video" aria-label="Signbot promotion video for finals qualification" src="project-media/signbot-finals-qualification.mp4" data-hls="project-media/adaptive/signbot-finals-qualification/master.m3u8" data-fallback="project-media/signbot-finals-qualification.mp4" poster="project-media/adaptive/signbot-finals-qualification/poster.jpg" preload="none"></video><figcaption>Signbot promotion video for finals qualification</figcaption></figure>
                 <figure><img src="project-media/signbot-hardware-software-output.png" alt="Signbot hardware, software interface, and handwritten output shown side by side"><figcaption>Hardware, Software and Application side-by-side</figcaption></figure>
               </div>
               <p>I’m still very fond of this little robot (my first self-built robot!) which we managed to build in a very short time despite remote life during COVID.</p>
@@ -410,6 +410,9 @@
       });
     }
     audioProjectVideos.forEach(video => {
+      video.addEventListener("click", () => {
+        if (!video.dataset.adaptiveLoaded && !video.currentSrc) playAdaptiveVideo(video);
+      });
       video.addEventListener("play", () => {
         adaptivePlayers.get(video)?.startLoad();
         pauseOtherAudioVideos(video);
