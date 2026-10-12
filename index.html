@@ -17,7 +17,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Young+Serif&display=swap" rel="stylesheet">
   <title>Maximilian Eberlein's Personal Website</title>
-  <link rel="stylesheet" href="styles.css?v=2026-10-11-home-nav-animation">
+  <link rel="stylesheet" href="styles.css?v=2026-10-11-home-scroll-cue">
 </head>
 <body class="home-active">
   <header class="profile">
@@ -44,6 +44,9 @@
   <main>
     <section id="home" class="screen home-screen" aria-label="Summary of my shenanigans">
       <h1>What I've been up to so far</h1>
+      <a class="home-scroll-cue" href="#education" aria-label="Scroll down to Education">
+        <svg viewBox="0 0 24 30" aria-hidden="true"><path d="M12 2v25m-8-8 8 8 8-8" /></svg>
+      </a>
     </section>
 
     <section id="education" class="screen content-screen">
@@ -739,7 +742,7 @@
       if (event.key === "ArrowRight") showGalleryPhoto(galleryIndex + 1);
     });
     let introScrollTimer;
-    if (!window.location.hash && !window.matchMedia("(max-width: 800px), (hover: none)").matches) {
+    if (!window.location.hash) {
       introScrollTimer = window.setTimeout(() => {
         document.getElementById("education").scrollIntoView({
           behavior: "smooth",
