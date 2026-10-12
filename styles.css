@@ -50,7 +50,7 @@ body.home-active .side-nav { transform: translate(calc(-50% - 14px), -50%); opac
 .page-content > h2 { margin: 0 0 28px; color: var(--white); font-size: clamp(30px, 4vw, 44px); line-height: 1.15; font-weight: 400; letter-spacing: 0; }
 .education-grid { display: grid; grid-template-columns: 1fr; column-gap: 34px; }
 .education-grid > h2 { grid-column: 1 / -1; }
-.education-grid > .education-group { grid-column: 1 / -1; min-width: 0; border-bottom: 1px solid #2b2b2b; }
+.page-content > .education-group { grid-column: 1 / -1; min-width: 0; border-bottom: 1px solid #2b2b2b; }
 .education-group > summary { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 13px 0; color: var(--white); cursor: pointer; font-size: 16px; line-height: 1.4; list-style: none; }
 .education-group > summary::-webkit-details-marker { display: none; }
 .education-group > summary::after { content: ""; width: 8px; height: 8px; flex: 0 0 8px; border-right: 1.5px solid currentColor; border-bottom: 1.5px solid currentColor; transform: rotate(45deg) translateY(-2px); transition: transform .18s ease; }
@@ -98,10 +98,10 @@ body.home-active .side-nav { transform: translate(calc(-50% - 14px), -50%); opac
 .project-toggle-label { flex: 1; }
 .project-toggle:hover { color: var(--white); }
 .project-toggle:focus-visible { outline: 2px solid #777; outline-offset: 3px; }
-.project-toggle-icon { display: grid; width: 34px; height: 34px; flex: 0 0 34px; margin-left: auto; padding: 5px; place-items: center; border: 1px solid #383838; border-radius: 50%; background: #171717; color: var(--muted); transition: color .18s ease, background .18s ease; }
-.project-toggle:hover .project-toggle-icon, .project-toggle:focus-visible .project-toggle-icon { background: #292929; color: var(--white); }
-.project-toggle[aria-expanded="true"] .project-toggle-icon svg { transform: rotate(180deg); }
-.project-toggle-icon svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; transition: transform .2s ease; }
+.project-toggle-icon { position: relative; display: block; width: 8px; height: 8px; flex: 0 0 8px; margin: 0 3px 4px auto; color: var(--white); }
+.project-toggle-icon::after { position: absolute; inset: 0; width: 8px; height: 8px; border-right: 1.5px solid currentColor; border-bottom: 1.5px solid currentColor; content: ""; transform: rotate(45deg) translateY(-2px); transition: transform .18s ease; }
+.project-toggle-icon svg { display: none; }
+.project-toggle[aria-expanded="true"] .project-toggle-icon::after { transform: rotate(225deg) translate(-1px, -1px); }
 .project-feature-mark { display: block; width: 38px; height: 34px; flex: 0 0 38px; overflow: hidden; border-radius: 4px; }
 .project-feature-mark:focus-visible { outline: 2px solid #777; outline-offset: 3px; }
 .project-feature-mark img { display: block; width: auto; max-width: none; height: 34px; object-fit: initial; }
@@ -160,11 +160,16 @@ body.home-active .side-nav { transform: translate(calc(-50% - 14px), -50%); opac
 .plain-list a { color: inherit; text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 0.16em; }
 .plain-list a:hover { color: var(--white); }
 #papers-awards .paper-entry > span > a,
+#papers-awards .talk-entry > span > a,
 #papers-awards .award-entry > span > a { text-decoration: none; }
 #papers-awards .paper-entry > span > a::after,
+#papers-awards .talk-entry > span > a::after,
 #papers-awards .award-entry > span > a::after { content: "↗"; display: inline-block; margin-left: .24em; font: .8em/1 -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; vertical-align: .16em; }
 .publication-venue { display: block; color: var(--muted); font: 12px/1.6 sans-serif; }
 .paper-entry { display: flex; align-items: flex-start; gap: 0; }
+.talk-entry { display: flex; align-items: flex-start; gap: 0; min-width: 0; }
+.talk-entry > .paper-logo-trigger, .talk-entry > .award-foundation-link { width: 80px; flex: 0 0 80px; }
+.talk-entry > span:last-child { min-width: 0; }
 .paper-logo-trigger { position: relative; display: flex; width: 80px; min-height: 42px; flex: 0 0 80px; align-items: center; justify-content: flex-start; padding: 0; border: 0; background: transparent; color: inherit; cursor: pointer; transition: opacity .18s ease; }
 .paper-logo-trigger:hover { opacity: .76; }
 .paper-logo-trigger:focus-visible { outline: 1px solid var(--white); outline-offset: 2px; }
@@ -246,7 +251,7 @@ body.home-active .side-nav { transform: translate(calc(-50% - 14px), -50%); opac
   .content-screen { padding: 104px 32px 88px; }
   .education-grid { grid-template-columns: 1fr; }
   .education-grid > h2 { grid-column: auto; }
-  .education-grid > .education-group { grid-column: auto; }
+  .page-content > .education-group { grid-column: auto; }
   .entry { grid-template-columns: 72px minmax(0, 1fr); grid-template-areas: "logo details" "logo date"; gap: 1px 10px; align-items: start; }
   .entry > .date { grid-area: date; margin: 0; }
   .entry > .education-content { display: contents; }
@@ -262,6 +267,11 @@ body.home-active .side-nav { transform: translate(calc(-50% - 14px), -50%); opac
   .research-list .paper-entry { display: contents; }
   .research-list .paper-logo-trigger { grid-area: logo; width: 72px; flex: none; justify-content: center; }
   .research-list .paper-entry > span:last-child { grid-area: details; min-width: 0; }
+  .talk-list li { grid-template-columns: 72px minmax(0, 1fr); grid-template-areas: "logo details" "logo date"; gap: 1px 10px; align-items: start; }
+  .talk-list li > .date { grid-area: date; margin: 0; }
+  .talk-list .talk-entry { display: contents; }
+  .talk-entry > .paper-logo-trigger, .talk-entry > .award-foundation-link { grid-area: logo; width: 72px; flex: none; }
+  .talk-entry > span:last-child { grid-area: details; min-width: 0; }
   .honors-list li { grid-template-columns: 72px minmax(0, 1fr); grid-template-areas: "logo details" "logo date"; gap: 1px 10px; align-items: start; }
   .honors-list li > .date { grid-area: date; margin: 0; }
   .honors-list .award-entry { display: contents; }
