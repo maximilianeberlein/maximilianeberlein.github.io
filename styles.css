@@ -235,6 +235,11 @@ a { color: inherit; }
   .entry .education-orca-mark img { height: 40px; }
   .entry .education-content > div { grid-area: details; min-width: 0; }
   .plain-list li { grid-template-columns: 1fr; gap: 1px; }
+  .research-list li { grid-template-columns: 72px minmax(0, 1fr); grid-template-areas: "logo details" "logo date"; gap: 1px 10px; align-items: start; }
+  .research-list li > .date { grid-area: date; margin: 0; }
+  .research-list .paper-entry { display: contents; }
+  .research-list .paper-logo-trigger { grid-area: logo; width: 72px; flex: none; justify-content: center; }
+  .research-list .paper-entry > span:last-child { grid-area: details; min-width: 0; }
   .honors-list li { grid-template-columns: 72px minmax(0, 1fr); grid-template-areas: "logo details" "logo date"; gap: 1px 10px; align-items: start; }
   .honors-list li > .date { grid-area: date; margin: 0; }
   .honors-list .award-entry { display: contents; }
