@@ -450,15 +450,53 @@
         });
       });
     });
+    let projectHashScrollTimers = [];
     function openProjectFromHash() {
-      const project = document.getElementById(decodeURIComponent(window.location.hash.slice(1)));
+      projectHashScrollTimers.forEach(clearTimeout);
+      projectHashScrollTimers = [];
+      let projectId;
+      try {
+        projectId = decodeURIComponent(window.location.hash.slice(1));
+      } catch {
+        return;
+      }
+      const project = document.getElementById(projectId);
       if (!project?.classList.contains("project-accordion")) return;
       const toggle = project.querySelector(".project-toggle");
-      if (!toggle) return;
+      const screen = project.closest(".screen");
+      if (!toggle || !screen) return;
       if (toggle.getAttribute("aria-expanded") !== "true") toggle.click();
-      requestAnimationFrame(() => project.scrollIntoView({ behavior: "smooth", block: "start" }));
+
+      const alignProject = () => {
+        const root = document.documentElement;
+        const previousRootBehavior = root.style.scrollBehavior;
+        const previousScreenBehavior = screen.style.scrollBehavior;
+        root.style.scrollBehavior = "auto";
+        screen.style.scrollBehavior = "auto";
+
+        if (window.matchMedia("(max-width: 800px)").matches) {
+          const top = project.getBoundingClientRect().top + window.scrollY - 18;
+          window.scrollTo(0, top);
+        } else {
+          const screenTop = screen.getBoundingClientRect().top + window.scrollY;
+          window.scrollTo(0, screenTop);
+          screen.scrollTop = project.getBoundingClientRect().top - screen.getBoundingClientRect().top - 18;
+        }
+
+        requestAnimationFrame(() => {
+          root.style.scrollBehavior = previousRootBehavior;
+          screen.style.scrollBehavior = previousScreenBehavior;
+        });
+      };
+
+      // Safari may restore the previous scroll position after resolving the URL fragment.
+      requestAnimationFrame(() => requestAnimationFrame(alignProject));
+      [120, 400].forEach(delay => {
+        projectHashScrollTimers.push(window.setTimeout(alignProject, delay));
+      });
     }
     window.addEventListener("hashchange", openProjectFromHash);
+    window.addEventListener("pageshow", openProjectFromHash);
     openProjectFromHash();
     const audioProjectVideos = [...document.querySelectorAll(".audio-coordinated-video")];
     function pauseOtherAudioVideos(video) {
