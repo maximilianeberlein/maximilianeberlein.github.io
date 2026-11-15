@@ -98,7 +98,7 @@
         <h2>Projects</h2>
 
         <ul class="plain-list project-list">
-          <li class="project-accordion">
+          <li id="project-orcahand" class="project-accordion">
             <button class="project-toggle project-list-toggle" type="button" data-project-name="Orcahand" aria-label="Show Orcahand project content" aria-expanded="false" aria-controls="orcahand-project-content">
               <img class="project-list-logo project-list-logo-wide" src="logos/orcahand.png" alt="">
               <span class="project-list-title">Orcahand</span>
@@ -139,7 +139,7 @@
               </div>
             </div>
           </li>
-          <li class="project-accordion">
+          <li id="project-happi" class="project-accordion">
             <button class="project-toggle project-list-toggle" type="button" data-project-name="HAPPI wristband" aria-label="Show HAPPI wristband project content" aria-expanded="false" aria-controls="wristband-project-content">
               <img class="project-list-logo" src="project-media/happi-project-thumbnail.jpg" alt="">
               <span class="project-list-title">HAPPI wristband</span>
@@ -160,7 +160,7 @@
               <p>I may still publish this work, but I haven’t yet found the time to arrange the ethical approval in Switzerland needed for a proper study with blind participants. I’m happy to share my design files and code if you’re interested in building on the project or testing it. There’s a real need for a device that helps visually impaired people detect obstacles beyond their cane’s reach without strapping on a bulky device to their chest or head :) Read the <a href="papers/lidar-haptic-feedback-wristband-thesis.pdf" target="_blank" rel="noopener noreferrer">project report</a> for more details!</p>
             </div>
           </li>
-          <li class="project-accordion">
+          <li id="project-dynamic-dexterous-manipulation" class="project-accordion">
             <button class="project-toggle project-list-toggle" type="button" data-project-name="Dynamic Dexterous Manipulation" aria-label="Show Dynamic Dexterous Manipulation project content" aria-expanded="false" aria-controls="dynamic-dexterous-content">
               <img class="project-list-logo" src="logos/dynamic-dexterous-manipulation.png" alt="">
               <span class="project-list-title">Dynamic Dexterous Manipulation</span>
@@ -196,7 +196,7 @@
               <p><a href="papers/bachelor-thesis-dynamic-dexterous-manipulation.pdf" target="_blank" rel="noopener noreferrer">Click here</a> to read the full report!</p>
             </div>
           </li>
-          <li class="project-accordion project-feature-item">
+          <li id="project-metasuit" class="project-accordion project-feature-item">
         <article class="project-feature">
           <h3 class="project-feature-title"><a class="project-feature-mark" href="https://www.metasuit.ethz.ch/" target="_blank" rel="noopener noreferrer" aria-label="Visit the MetaSuit website"><img src="logos/metasuit-site.png" alt=""></a><button class="project-toggle" type="button" aria-label="Show MetaSuit project content" aria-expanded="false" aria-controls="metasuit-project-content"><span class="project-toggle-label">MetaSuit</span><span class="project-feature-year">2022-2023</span><span class="project-toggle-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg></span></button></h3>
           <div class="project-feature-content" id="metasuit-project-content" hidden>
@@ -226,7 +226,7 @@
           </div>
         </article>
           </li>
-          <li class="project-accordion">
+          <li id="project-signbot" class="project-accordion">
             <button class="project-toggle project-list-toggle" type="button" data-project-name="Signbot" aria-label="Show Signbot project content" aria-expanded="false" aria-controls="signbot-project-content">
               <img class="project-list-logo" src="logos/signbot.png" alt="">
               <span class="project-list-title">Signbot</span>
@@ -450,6 +450,16 @@
         });
       });
     });
+    function openProjectFromHash() {
+      const project = document.getElementById(decodeURIComponent(window.location.hash.slice(1)));
+      if (!project?.classList.contains("project-accordion")) return;
+      const toggle = project.querySelector(".project-toggle");
+      if (!toggle) return;
+      if (toggle.getAttribute("aria-expanded") !== "true") toggle.click();
+      requestAnimationFrame(() => project.scrollIntoView({ behavior: "smooth", block: "start" }));
+    }
+    window.addEventListener("hashchange", openProjectFromHash);
+    openProjectFromHash();
     const audioProjectVideos = [...document.querySelectorAll(".audio-coordinated-video")];
     function pauseOtherAudioVideos(video) {
       if (video.muted) return;

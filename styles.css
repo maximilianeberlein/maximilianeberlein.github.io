@@ -86,7 +86,7 @@ body.home-active .side-nav { transform: translate(calc(-50% - 14px), -50%); opac
 .plain-list li { display: grid; grid-template-columns: 112px 1fr; gap: 12px; padding: 7px 0; }
 .project-intro { margin: 0 0 14px; color: var(--muted); font-size: 15px; }
 .project-list li { display: block; padding: 9px 0; }
-.project-list li.project-accordion { display: block; padding: 7px 0; border-bottom: 1px solid var(--line); }
+.project-list li.project-accordion { display: block; padding: 7px 0; border-bottom: 1px solid var(--line); scroll-margin-top: 18px; }
 .project-list li.project-feature-item .project-feature { padding: 0; border: 0; }
 .project-list-toggle { width: 100%; }
 .project-list-title { flex: 1; line-height: 1.2; }
