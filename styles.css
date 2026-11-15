@@ -246,7 +246,7 @@ body.project-detail-view.home-active .side-nav { transform: translateY(-50%); op
 .gallery-title[hidden], .gallery-empty[hidden], .gallery-stage[hidden], .gallery-thumbnails[hidden], .gallery-arrow[hidden], .gallery-caption[hidden] { display: none; }
 .gallery-caption { margin: 16px 0 0; color: var(--muted); font: 14px/1.5 -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; text-align: center; }
 .gallery-caption:not([hidden]) { max-width: 760px; margin-inline: auto; }
-.photo-dialog.profile-intro .gallery-caption { position: absolute; inset: 34px 24px 20px; display: grid; place-items: center; margin: 0; color: var(--white); font-size: 18px; }
+.photo-dialog.profile-intro .gallery-caption { position: absolute; top: 50%; left: 50%; display: grid; width: calc(100% - 48px); place-items: center; margin: 0; color: var(--white); font-size: 18px; transform: translate(-50%, -50%); }
 .hobbies { margin: 0; color: var(--muted); }
 @media (max-width: 800px) {
   html { scroll-snap-type: none; }
