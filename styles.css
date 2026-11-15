@@ -10,6 +10,7 @@
 }
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; scroll-snap-type: y mandatory; }
+html.project-deep-link { scroll-snap-type: none !important; }
 body { margin: 0; background: var(--black); color: var(--white); font: 17px/1.55 "Young Serif", Georgia, serif; }
 a { color: inherit; }
 .profile { position: fixed; z-index: 6; top: 24px; right: 30px; display: flex; align-items: center; gap: 18px; color: var(--white); }

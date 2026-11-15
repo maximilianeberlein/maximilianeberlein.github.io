@@ -461,10 +461,14 @@
         return;
       }
       const project = document.getElementById(projectId);
-      if (!project?.classList.contains("project-accordion")) return;
+      if (!project?.classList.contains("project-accordion")) {
+        document.documentElement.classList.remove("project-deep-link");
+        return;
+      }
       const toggle = project.querySelector(".project-toggle");
       const screen = project.closest(".screen");
       if (!toggle || !screen) return;
+      document.documentElement.classList.add("project-deep-link");
       if (toggle.getAttribute("aria-expanded") !== "true") toggle.click();
 
       const alignProject = () => {
@@ -491,7 +495,7 @@
 
       // Safari may restore the previous scroll position after resolving the URL fragment.
       requestAnimationFrame(() => requestAnimationFrame(alignProject));
-      [120, 400].forEach(delay => {
+      [0, 120, 400, 800].forEach(delay => {
         projectHashScrollTimers.push(window.setTimeout(alignProject, delay));
       });
     }
