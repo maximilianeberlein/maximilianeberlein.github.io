@@ -17,7 +17,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Young+Serif&display=swap" rel="stylesheet">
   <title>Maximilian Eberlein's Personal Website</title>
-  <link rel="stylesheet" href="styles.css?v=2026-10-11-hobby-crop">
+  <link rel="stylesheet" href="styles.css?v=2026-11-15-project-home-nav">
 </head>
 <body class="home-active">
   <header class="profile">
@@ -34,6 +34,7 @@
     <button class="profile-photo-trigger" type="button" aria-label="Open profile photo" aria-haspopup="dialog" aria-controls="event-photo-gallery"><img class="profile-photo" src="photos/profile-portrait.jpg" alt=""></button>
   </header>
   <aside class="side-nav" aria-label="Section navigation">
+    <a class="project-home-link" href="#home" aria-label="Main page"><span>🏠</span></a>
     <a href="#education" aria-label="Education"><span>🎓</span></a>
     <a href="#work-experience" aria-label="Work Experience"><span>💼</span></a>
     <a href="#projects" aria-label="Projects"><span>🛠️</span></a>
@@ -450,10 +451,8 @@
         });
       });
     });
-    let projectHashScrollTimers = [];
+    let activeProjectDetailId = null;
     function openProjectFromHash() {
-      projectHashScrollTimers.forEach(clearTimeout);
-      projectHashScrollTimers = [];
       let projectId;
       try {
         projectId = decodeURIComponent(window.location.hash.slice(1));
@@ -461,43 +460,36 @@
         return;
       }
       const project = document.getElementById(projectId);
-      if (!project?.classList.contains("project-accordion")) {
+      const isProjectDetail = project?.classList.contains("project-accordion");
+      const leavingProjectDetail = activeProjectDetailId !== null && (!isProjectDetail || activeProjectDetailId !== projectId);
+
+      if (activeProjectDetailId && (!isProjectDetail || activeProjectDetailId !== projectId)) {
+        const previousProject = document.getElementById(activeProjectDetailId);
+        const previousToggle = previousProject?.querySelector(".project-toggle");
+        if (previousToggle) previousToggle.disabled = false;
+        if (previousToggle?.getAttribute("aria-expanded") === "true") previousToggle.click();
+        previousProject?.classList.remove("is-project-detail");
+        activeProjectDetailId = null;
+      }
+
+      if (!isProjectDetail) {
+        document.body.classList.remove("project-detail-view");
         document.documentElement.classList.remove("project-deep-link");
+        if (leavingProjectDetail) {
+          requestAnimationFrame(() => document.getElementById(projectId)?.scrollIntoView({ behavior: "smooth", block: "start" }));
+        }
         return;
       }
       const toggle = project.querySelector(".project-toggle");
-      const screen = project.closest(".screen");
-      if (!toggle || !screen) return;
+      if (!toggle) return;
+      activeProjectDetailId = projectId;
+      document.body.classList.add("project-detail-view");
       document.documentElement.classList.add("project-deep-link");
+      project.classList.add("is-project-detail");
       if (toggle.getAttribute("aria-expanded") !== "true") toggle.click();
-
-      const alignProject = () => {
-        const root = document.documentElement;
-        const previousRootBehavior = root.style.scrollBehavior;
-        const previousScreenBehavior = screen.style.scrollBehavior;
-        root.style.scrollBehavior = "auto";
-        screen.style.scrollBehavior = "auto";
-
-        if (window.matchMedia("(max-width: 800px)").matches) {
-          const top = project.getBoundingClientRect().top + window.scrollY - 18;
-          window.scrollTo(0, top);
-        } else {
-          const screenTop = screen.getBoundingClientRect().top + window.scrollY;
-          window.scrollTo(0, screenTop);
-          screen.scrollTop = project.getBoundingClientRect().top - screen.getBoundingClientRect().top - 18;
-        }
-
-        requestAnimationFrame(() => {
-          root.style.scrollBehavior = previousRootBehavior;
-          screen.style.scrollBehavior = previousScreenBehavior;
-        });
-      };
-
-      // Safari may restore the previous scroll position after resolving the URL fragment.
-      requestAnimationFrame(() => requestAnimationFrame(alignProject));
-      [0, 120, 400, 800].forEach(delay => {
-        projectHashScrollTimers.push(window.setTimeout(alignProject, delay));
-      });
+      toggle.disabled = true;
+      toggle.setAttribute("aria-label", `${toggle.dataset.projectName} project`);
+      window.scrollTo(0, 0);
     }
     window.addEventListener("hashchange", openProjectFromHash);
     window.addEventListener("pageshow", openProjectFromHash);
